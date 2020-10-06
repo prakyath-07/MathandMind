@@ -19,4 +19,5 @@ public class movewater : MonoBehaviour
         float newpos=Mathf.Repeat(Time.time*scrollSpeed,20);
         transform.position=startPos+Vector2.right*newpos;
     }
+    ///
 }
