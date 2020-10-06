@@ -7,12 +7,11 @@ public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public ParticleSystem ps,confettiPS;
-    int num1,num2,res,score=0;
+    int num1,num2,score=0;
     public Text counterText,scoreText,finalscore,num1Text,num2Text,sign;
     public Button btn_option1,btn_option2,btn_option3;
     public float timerValue;
-     //public GameObject aObject;
-    
+  
      //options
        public Text option1text,option2text,option3text,clicked_value;
       
@@ -20,8 +19,15 @@ public class GameManager : MonoBehaviour
 
        //PANEL DATA
        public GameObject winscreen, GameOverScreen;
+
+       //New Try (can be deleted )
+        //public GameObject buttonPrefab;
+   // public GameObject panelToAttachButtonsTo;
+
+    //new try2
+    public static int res;
        
-    void Start()
+    public void Start()
     {
       
         //ParticleSystem ps = GetComponent<ParticleSystem>();
@@ -37,19 +43,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-          timerValue-=1*Time.deltaTime;
-           
+          timerValue-=1*Time.deltaTime; 
          counterText.text=timerValue.ToString("00");
          if(timerValue<0)
          {
            gameOver();
+           //Time.timeScale=0;
          }
     }
 
-    public void numberGenerator()
+    public int numberGenerator()
     {
-        string[] signs = new string[] { "+", "-", "*" };
+        string[] signs = new string[] { "+", "*" };
         string randomSign = signs[Random.Range(0, signs.Length)];
         sign.text=randomSign;
         // string temp=randomSign.text;
@@ -60,10 +65,10 @@ public class GameManager : MonoBehaviour
         // sign.text = x.ToString("");
 
         num1 = Random.Range(0,10);
-        Debug.Log("First Number is "+num1);
-        num2 = Random.Range(5,12);
-        Debug.Log("Second Number is "+num2);
-        Debug.Log("Operation is "+randomSign);
+        //Debug.Log("First Number is "+num1);
+        num2 = Random.Range(0,10);
+        //print("Second Number is "+num2);
+       // Debug.Log("Operation is "+randomSign);
         num1Text.text = num1.ToString("");
         num2Text.text = num2.ToString("");
         // res = num1 + num2;
@@ -72,73 +77,67 @@ public class GameManager : MonoBehaviour
          {
              case "+":
              res = num1+num2;
-             print("Correct answer is "+res);
+            // print("Answer should be "+res);
              break;
 
              case "-":
              res = num1-num2;
-             print("Correct answer is "+res);
+            // print("Answer should be"+res);
              break;
 
              case "*":
              res = num1*num2;
-             print("Correct answer is "+res);
+           //  print("Answer should be "+res);
              break;
          }
+         return res;
 
     }
 
     public void optionGenerator()
     {
-        int option1_value = Random.Range(0,10);
-        option1text.text = option1_value.ToString("");
+        GameObject.Find("Content").GetComponent<populatescript>().populate();
+        // int temp = Random.Range(0,2);
+        // print("temp no is"+temp);
+        // ////option 1/////////////////////
+        // if(temp ==0)
+        // {
+        //     int option1_value =res;
+        //     option1text.text = option1_value.ToString("");
+        // }
+        // else{
+        //     int option1_value = Random.Range(0,10);
+        // option1text.text = option1_value.ToString("");
+        // }
+        // /////option 2/////
+        // if(temp==1)
+        // {
+        // int option2_value =res;
+        // option2text.text = option2_value.ToString("");
+        // }   
+        // else
+        // {
+        //     int option2_value = Random.Range(0,10);
+        // option2text.text = option2_value.ToString("");
+        // }
+        
+        // ///option3////////////////////////////////
 
-        int option2_value = Random.Range(0,10);
-        option2text.text = option2_value.ToString("");
+        // if(temp == 2)
+        //  {
+        //  int option3_value =res;
+        // option3text.text = option3_value.ToString("");
+        //  }   
+        //  else
+        //  {
+        //  int option3_value =Random.Range(0,10);
+        //  option3text.text = option3_value.ToString("");
+        //  }
 
-        int option3_value = res;
-        option3text.text = option3_value.ToString("");
-
-        print("answer is"+ res);
+      //  print("answer is"+ res);
        //Debug.Log(x);
     }
-    public void btn_Click()
-    {
-        //int x;
-         string name =  EventSystem.current.currentSelectedGameObject.name;
-        // Text txt = transform.Find("Text").GetComponentInChildren<Text>();
-        // print(txt);
-        Text txt = GameObject.Find(name).GetComponentInChildren<Text>();
-        //txt.text = txt.ToString("");
-        
-        string x=txt.text;
-       int selected_val=  int.Parse(x);
-        print("selected option is"+ selected_val);
-       // print(selected_val);
-        //print(txt.text);
-        if(selected_val==res)
-        {
-            //AudioManager.play_crctSFX();
-           GameObject.Find("AudioManager").GetComponent<AudioManager>().play_crctSFX();
-            //AudioSource.PlayClipAtPoint(correctAnsSound,Camera.main.transform.position,0.75f);
-            Score_Up();
-            print("you gave correct ans!");
-            //
-
-        }
-        else
-        {
-            GameObject.Find("CameraShake").GetComponent<CameraShakeScript>().ShakeIt();
-            GameObject.Find("SecAudioManager").GetComponent<SecAudioManager>().play_wrongSFX();
-            if( health_manager.health ==00f)
-            gameOver();
-            health_manager.health -=10f;
-            print("you gave wrong ans");
-        //     if(WrongPanel!=null)
-        //   WrongPanel.SetActive(true);
-        }
-        Start();
-    }
+   
     
     ///function to handle game score
     public void Score_Up()
@@ -168,5 +167,8 @@ public class GameManager : MonoBehaviour
         finalscore.text=score.ToString("00");
        // Time.timeScale = 0;
     }
+
+    //button click function (prefab)
+    
 
 }

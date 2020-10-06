@@ -45,6 +45,11 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\bgmusic_controller.cs" />
+     <Compile Include="Assets\movewater.cs" />
+     <Compile Include="Assets\populatescript.cs" />
+     <Compile Include="Assets\prefabclicked.cs" />
+     <Compile Include="Assets\prefabcontroller.cs" />
      <Compile Include="Assets\Scripts\Level1 Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Level1 Scripts\CameraShakeScript.cs" />
      <Compile Include="Assets\Scripts\Level1 Scripts\GameManager.cs" />
@@ -56,6 +61,7 @@
      <Compile Include="Assets\Scripts\Level3 Scripts\circle.cs" />
      <Compile Include="Assets\Scripts\Level3 Scripts\Level3Controller.cs" />
      <Compile Include="Assets\Scripts\Level3 Scripts\polygon.cs" />
+     <Compile Include="Assets\Scripts\Loading script\screen_load.cs" />
      <Compile Include="Assets\Scripts\QuizManager.cs" />
      <Compile Include="Assets\Scripts\Scane_manager.cs" />
  <Reference Include="Unity.Timeline.Editor">

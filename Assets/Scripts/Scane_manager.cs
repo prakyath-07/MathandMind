@@ -11,7 +11,7 @@ public class Scane_manager : MonoBehaviour
     }
 public void goHome()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("HomePage");
     }
      public void replay()
     {
